@@ -646,6 +646,7 @@ HSV rgblight_get_hsv(void) {
 
 void rgblight_setrgb(uint8_t r, uint8_t g, uint8_t b) {
     if (!rgblight_config.enable) {
+        uprintf("rgblight_config.enable is not set!!!\n");
         return;
     }
 

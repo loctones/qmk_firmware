@@ -21,5 +21,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define BACKLIGHT_DEFAULT_LEVEL 3
 
-#define RGBLIGHT_DEFAULT_VAL 128
-#define RGBLIGHT_DEFAULT_MODE (RGBLIGHT_MODE_RAINBOW_SWIRL + 2)
+//AAB: Rebase on 11/7. I think these are not needed and can be deleted
+// #define RGBLIGHT_DEFAULT_VAL 128
+// #define RGBLIGHT_DEFAULT_MODE (RGBLIGHT_MODE_STATIC_LIGHT)
+
+//AAB-define for HRM configuration
+// Some configuration is in loctones.h
+#define HOME_ROW_MODS
+// These need to be defined here:
+#define IGNORE_MOD_TAP_INTERRUPT
+//#define TAPPING_FORCE_HOLD // Only enable if needed, as this will disable auto-repeat for mod-tap, or use TAPPING_FORCE_HOLD_PER_KEY, if needed.
+
+//AAB: Enable Lighting layers
+#define RGBLIGHT_LAYERS
+
+// AAB: CAPS_WORD_ENABLE
+#define CAPS_WORD_ENABLE
+
+
