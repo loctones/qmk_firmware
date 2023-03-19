@@ -13,7 +13,7 @@ From Shell: c/code/qmk: ./mdloader_windows.exe --first --download .\qmk_firmware
 #endif
 #ifdef HOME_ROW_MODS
     //#define IGNORE_MOD_TAP_INTERRUPT // For some reason this needs to be defined in setup.h.
-    #define TAPPING_TERM 150
+    #define TAPPING_TERM 140
     //NOT #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term
 #else
     #define TAPPING_TERM 100
@@ -95,6 +95,15 @@ enum {
 #define ALT_L LALT_T(KC_L)
 #define CTL_K LCTL_T(KC_K)
 #define SFT_J LSFT_T(KC_J)
+// GASC with numbers on the home row
+#define GUI_1 LGUI_T(KC_1)
+#define ALT_2 LALT_T(KC_2)
+#define CTL_3 LCTL_T(KC_3)
+#define SFT_4 LSFT_T(KC_4)
+#define GUI_0 LGUI_T(KC_0)
+#define ALT_9 LALT_T(KC_9)
+#define CTL_8 LCTL_T(KC_8)
+#define SFT_7 LSFT_T(KC_7)
 #endif // #ifdef HOME_ROW_MODS
 
 

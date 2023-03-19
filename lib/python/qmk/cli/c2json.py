@@ -30,7 +30,7 @@ def c2json(cli):
         # Error checking
         if not cli.args.filename.exists():
             cli.log.error('C file does not exist!')
-            cli.log.error('file: %s'%cli.args.filename)
+            cli.log.error('file: %s '%cli.args.filename)
             cli.print_usage()
             return False
 

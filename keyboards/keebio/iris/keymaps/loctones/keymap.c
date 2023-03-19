@@ -84,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      RGB_TOG, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     RGB_MOD, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     RGB_MOD, GUI_1,   ALT_2,   CTL_3,   SFT_4,   KC_5,                               KC_6,    SFT_7,   CTL_8,   ALT_9,  GUI_0,    _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     BL_STEP, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+     BL_STEP, KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, _______,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -212,6 +212,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   // Issue a secret, if it's been activated
   return ( process_record_secrets(keycode, record)); // Check for and process any secrets
+}
+
+// Tapping term per key settings
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SFT_ENT: // Shift/enter key
+            return TAPPING_TERM - 20;
+        case GUI_A: // GUI/Win/A key
+        case GUI_1: // GUI/Win/1 key
+            return TAPPING_TERM + 20;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {

@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOME_ROW_MODS
 // These need to be defined here:
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM_PER_KEY // Term overrides in the Iris keymap
 //#define TAPPING_FORCE_HOLD // Only enable if needed, as this will disable auto-repeat for mod-tap, or use TAPPING_FORCE_HOLD_PER_KEY, if needed.
 
 //AAB: Enable Lighting layers
