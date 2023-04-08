@@ -201,17 +201,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
         break;
   }
-  // Put this after layer processing so that changing layers doesn't change the caps word state.
-  // This allows minus and underscore to be pressed without exiting the caps word state.
-#ifdef CAPS_WORD_ENABLE
-  if (!process_caps_word(keycode, record)) 
-  { 
-     return false; 
-  }
-#endif // #ifdef CAPS_WORD_ENABLE
 
   // Issue a secret, if it's been activated
-  return ( process_record_secrets(keycode, record)); // Check for and process any secrets
+  return (process_record_secrets(keycode, record)); // Check for and process any secrets
 }
 
 // Tapping term per key settings

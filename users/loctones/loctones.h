@@ -78,7 +78,7 @@ enum {
 
 // Custom keys
 #define SPC_LOC LT(LYR_LOC, KC_SPACE)  // _LOC layer when held, space when tapped
-#define CTL_BS LCTL(KC_BSPACE)  // Ctrl + Backspace, for deleting whole words
+#define CTL_BS LCTL(KC_BSPC)  // Ctrl + Backspace, for deleting whole words
 #define CTL_ESC MT(MOD_LCTL, KC_ESC)  // Mod-tap: LCTL when held, Esc when tapped
 #define CTL_LAR MT(MOD_RCTL, KC_LEFT) // Mod-tap: RCTL when held, left arrow when tapped
 #define SFT_CAP MT(MOD_LSFT, KC_CAPSLOCK) // Mod-tap: Left shift when held, caps lock when tapped

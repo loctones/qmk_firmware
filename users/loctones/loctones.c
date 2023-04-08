@@ -11,7 +11,7 @@
 
 #ifdef TAP_DANCE_ENABLE
 // Tap Dance definitions , using simple definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     // Braces, single tap for left, double tap for right
     [TD_2CBR] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
     [TD_2PRN] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),

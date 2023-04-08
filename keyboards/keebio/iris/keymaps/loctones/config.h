@@ -19,3 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // #define USE_I2C
 #define EE_HANDS
+
+// Turn on Caps Word when both shift buttons are held
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
