@@ -12,12 +12,11 @@ From Shell: c/code/qmk: ./mdloader_windows.exe --first --download .\qmk_firmware
     #undef TAPPING_TERM
 #endif
 #ifdef HOME_ROW_MODS
-    //#define IGNORE_MOD_TAP_INTERRUPT // For some reason this needs to be defined in setup.h.
-    #define TAPPING_TERM 140
-    //NOT #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term
+    #define TAPPING_TERM 140 // This is for the Iris only. The ALT requires a larger term due to the heavy keys
 #else
-    #define TAPPING_TERM 100
-    #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term
+    #define TAPPING_TERM 140
+    // AAB: Permissive hold screws up key rolls with home row mods
+    // #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term. 
 #endif
 
 #define MACRO_TIMER 5  // Only used for secrets, right now, as far as I can tell

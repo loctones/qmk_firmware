@@ -157,4 +157,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_MATRIX_STARTUP_SAT 200 
 #define RGB_MATRIX_STARTUP_VAL 140  // Default brightness, don't go over 165
 
+//AAB-define for HRM configuration
+// Some configuration is in loctones.h
+#define HOME_ROW_MODS
+// These need to be defined here:
+#define TAPPING_TERM_PER_KEY // Term overrides in the ALT keymap
+#define IGNORE_MOD_TAP_INTERRUPT // Note that this is deprecated in the newest versions of QMK
+
+// Undefine PERMISSIVE_HOLD as it causes problems with key rolls
+// I think tap dance may enable this, or at least mimic the functionality
+#ifdef PERMISSIVE_HOLD
+    #undef PERMISSIVE_HOLD
+#endif
+// Turn on Caps Word when both shift buttons are held
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
 #include "config_led.h"

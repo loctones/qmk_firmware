@@ -1,3 +1,18 @@
+/* Copyright 2020 Brett Monje <brett@monje.gg>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include QMK_KEYBOARD_H
 #include "loctones.h"
 
@@ -5,6 +20,14 @@ __attribute__ ((weak))
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
+
+// Redefine my tapping term specically for the Alt
+#ifdef TAPPING_TERM
+    #undef TAPPING_TERM
+#endif
+#define TAPPING_TERM 140
+
+
 
 enum alt_keycodes {
     U_T_AUTO = END_SECRET_SAFE_RANGE, //USB Extra Port Toggle Auto Detect / Always Active
@@ -20,22 +43,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT_65_ansi_blocker(
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_DEL,  \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_HOME, \
-        CTL_ESC, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,  KC_PGUP, \
-        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,   KC_PGDN, \
+        CTL_ESC, GUI_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,    KC_H,    SFT_J,   CTL_K,   ALT_L,   GUI_SCLN, KC_QUOT,         KC_ENT,  KC_PGUP, \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,          KC_UP,   KC_PGDN, \
         KC_LCTL, KC_LGUI, KC_LALT,                            SPC_LOC,                            KC_RALT, MO(1),   CTL_LAR, KC_DOWN, KC_RGHT  \
     ),
     [LYR_MASSDROP_FN] = LAYOUT_65_ansi_blocker(
         KC_GRV,  KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, \
-        _______, RGB_SPD, RGB_VAI, RGB_SPI, RGB_HUI, RGB_SAI, _______, U_T_AUTO,U_T_AGCR,_______, KC_PSCR, KC_SLCK, KC_PAUS, _______, KC_MPLY, \
+        _______, RGB_SPD, RGB_VAI, RGB_SPI, RGB_HUI, RGB_SAI, _______, U_T_AUTO,U_T_AGCR,_______, KC_PSCR, KC_SLCT, KC_PAUS, _______, KC_MPLY, \
         _______, RGB_RMOD,RGB_VAD, RGB_MOD, RGB_HUD, RGB_SAD, _______, _______, _______, _______, _______, _______,          _______, KC_VOLU, \
         _______, RGB_TOG, RGB_M_X, RGB_M_P, _______, MD_BOOT, NK_TOGG, DBG_TOG, _______, _______, _______, _______,          KC_PGUP, KC_VOLD, \
         _______, _______, _______,                            _______,                            _______, _______, KC_HOME, KC_PGDN, KC_END  \
     ),
     [LYR_LOC] = LAYOUT_65_ansi_blocker(
         KC_GRV,  KC_F1,   KC_F2,   KC_F3,       KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_INS,  \
-        _______, _______,TD(TD_2GT),TD(TD_2CBR),KC_MINS, KC_UNDS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______, _______, _______, KC_END,  \
-        _______, _______, _______, TD(TD_2PRN), KC_BSPC, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,          _______, _______, \
-        _______, _______, _______, TD(TD_2BRC), CTL_BS,  _______, _______, _______, _______, _______, _______, _______,          _______, _______, \
+        _______, _______,TD(TD_2GT),TD(TD_2CBR),_______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______, _______, _______, KC_END,  \
+        _______, _______, _______, TD(TD_2PRN), KC_MINS, KC_UNDS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,          _______, _______, \
+        _______, _______, _______, TD(TD_2BRC), _______, _______, KC_BSPC, _______, _______, _______, _______, _______,          _______, _______, \
         _______, _______, _______,                                _______,                            _______, _______, _______, _______, _______  \
     ),
     /*
@@ -49,8 +72,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
 };
 
-#define MODS_SHIFT  (get_mods() & MOD_BIT(KC_LSHIFT) || get_mods() & MOD_BIT(KC_RSHIFT))
-#define MODS_CTRL  (get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTRL))
+#define MODS_SHIFT  (get_mods() & MOD_BIT(KC_LSFT) || get_mods() & MOD_BIT(KC_RSFT))
+#define MODS_CTRL  (get_mods() & MOD_BIT(KC_LCTL) || get_mods() & MOD_BIT(KC_RCTL))
 #define MODS_ALT  (get_mods() & MOD_BIT(KC_LALT) || get_mods() & MOD_BIT(KC_RALT))
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -131,10 +154,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // AAB: Enable Debug 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
-  debug_enable=true;
+  debug_enable=false ;
   //debug_matrix=true;
   //debug_keyboard=true;
   //debug_mouse=true;
+}
+
+// Tapping term per key settings
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SFT_ENT: // Shift/enter key
+            return TAPPING_TERM - 20;
+        case GUI_A: // GUI/Win/A key
+        case GUI_1: // GUI/Win/1 key
+        //case ALT_S: // GUI/Win/1 key
+            return TAPPING_TERM + 20;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 void matrix_init_user(void) {
