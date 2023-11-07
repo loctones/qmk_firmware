@@ -16,23 +16,23 @@ From Shell: c/code/qmk: ./mdloader_windows.exe --first --download .\qmk_firmware
 #else
     #define TAPPING_TERM 140
     // AAB: Permissive hold screws up key rolls with home row mods
-    // #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term. 
+    // #define PERMISSIVE_HOLD  // Permissive hold may cause problems with swift rolls that are within the tapping term.
 #endif
 
 #define MACRO_TIMER 5  // Only used for secrets, right now, as far as I can tell
 
 // Layer Names
 enum loc_layers {
-    LYR_QWERTY = 0,
+    LYR_DROP_QWERTY = 0,
     LYR_MASSDROP_FN = 1,
-    LYR_LOC = 2,
+    LYR_LOC = 2
 };
 
 enum iris_layers {
-    //LYR_QWERTY = 0,
+    LYR_QWERTY = 0,
     LYR_NAV = 1,     // Navigation
-    LYR_SYMBOLS, // Symbols
-    LYR_ADJUST   // Keyboard/others
+    LYR_SYMBOLS = 2, // Symbols
+    LYR_ADJUST = 3   // Keyboard/others
 };
 
 // Layer Select Underglow configuration
@@ -65,7 +65,7 @@ enum {
     TD_SINGLE_HOLD,
     TD_DOUBLE_TAP,
     TD_DOUBLE_HOLD
-} td_state_t; 
+} td_state_t;
 */
 
 // Tapdance aliases

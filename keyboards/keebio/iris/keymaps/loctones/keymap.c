@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     CTL_BS,  NAV,     KC_BSPC,                   KC_SPACE, SYMBOLS, KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
-  ),  
+  ),
 //   [LYR_QWERTY] = LAYOUT(
 //   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
 //      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
@@ -220,14 +220,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-   // Left encoder
-   // if (index == 0) {
-   //    if (clockwise) {
-   //       tap_code(KC_VOLU);
-   //    } else {
-   //       tap_code(KC_VOLD);
-   //    }
-   // }
    // Right encoder
    if (index == 1) {
       switch(biton32(layer_state)){

@@ -40,12 +40,12 @@ enum alt_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [LYR_QWERTY] = LAYOUT_65_ansi_blocker(
+    [LYR_DROP_QWERTY] = LAYOUT_65_ansi_blocker(
         KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC, KC_DEL,  \
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS, KC_HOME, \
         CTL_ESC, GUI_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,    KC_H,    SFT_J,   CTL_K,   ALT_L,   GUI_SCLN, KC_QUOT,         KC_ENT,  KC_PGUP, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,          KC_UP,   KC_PGDN, \
-        KC_LCTL, KC_LGUI, KC_LALT,                            SPC_LOC,                            KC_RALT, MO(1),   CTL_LAR, KC_DOWN, KC_RGHT  \
+        KC_LCTL, KC_LGUI, KC_LALT,                            SPC_LOC,                            KC_RALT, MO(1),   KC_LEFT, KC_DOWN, KC_RGHT  \
     ),
     [LYR_MASSDROP_FN] = LAYOUT_65_ansi_blocker(
         KC_GRV,  KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, \
@@ -151,7 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-// AAB: Enable Debug 
+// AAB: Enable Debug
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
   debug_enable=false ;
