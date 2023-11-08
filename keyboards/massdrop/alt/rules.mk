@@ -26,3 +26,5 @@ AUTO_SHIFT_ENABLE = no      # Auto Shift
 
 # Custom RGB matrix handling
 RGB_MATRIX_ENABLE = yes
+
+LTO_ENABLE = yes

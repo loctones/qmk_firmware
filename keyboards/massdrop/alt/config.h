@@ -154,7 +154,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Loctones RGB customizations for Massdrop Alt
 #define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR
 #define RGB_MATRIX_STARTUP_HUE 134
-#define RGB_MATRIX_STARTUP_SAT 200 
+#define RGB_MATRIX_STARTUP_SAT 200
 #define RGB_MATRIX_STARTUP_VAL 140  // Default brightness, don't go over 165
 
 //AAB-define for HRM configuration
@@ -162,7 +162,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOME_ROW_MODS
 // These need to be defined here:
 #define TAPPING_TERM_PER_KEY // Term overrides in the ALT keymap
-#define IGNORE_MOD_TAP_INTERRUPT // Note that this is deprecated in the newest versions of QMK
 
 // Undefine PERMISSIVE_HOLD as it causes problems with key rolls
 // I think tap dance may enable this, or at least mimic the functionality

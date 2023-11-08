@@ -21,15 +21,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define BACKLIGHT_DEFAULT_LEVEL 3
 
-//AAB: Rebase on 11/7. I think these are not needed and can be deleted
-// #define RGBLIGHT_DEFAULT_VAL 128
-// #define RGBLIGHT_DEFAULT_MODE (RGBLIGHT_MODE_STATIC_LIGHT)
+// Undefine RGB options to save memory space
+#undef RGBLIGHT_ANIMATIONS
+#undef RGBLIGHT_EFFECT_BREATHING
+#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+#undef RGBLIGHT_EFFECT_SNAKE
+#undef RGBLIGHT_EFFECT_KNIGHT
+#undef RGBLIGHT_EFFECT_CHRISTMAS
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RGB_TEST
+#undef RGBLIGHT_EFFECT_ALTERNATING
+#undef RGBLIGHT_EFFECT_TWINKLE
+
 
 //AAB-define for HRM configuration
 // Some configuration is in loctones.h
 #define HOME_ROW_MODS
 // These need to be defined here:
-#define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TERM_PER_KEY // Term overrides in the Iris keymap
 //#define TAPPING_FORCE_HOLD // Only enable if needed, as this will disable auto-repeat for mod-tap, or use TAPPING_FORCE_HOLD_PER_KEY, if needed.
 
