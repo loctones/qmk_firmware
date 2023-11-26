@@ -151,4 +151,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #    define ENABLE_RGB_MATRIX_SOLID_SPLASH
 #    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
 
+// Loctones RGB customizations for Massdrop Alt
+#define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_SOLID_COLOR
+#define RGB_MATRIX_STARTUP_HUE 134
+#define RGB_MATRIX_STARTUP_SAT 200
+#define RGB_MATRIX_STARTUP_VAL 140  // Default brightness, don't go over 165
+
+//AAB-define for HRM configuration
+// Some configuration is in loctones.h
+#define HOME_ROW_MODS
+// These need to be defined here:
+#define TAPPING_TERM_PER_KEY // Term overrides in the ALT keymap
+
+// Undefine PERMISSIVE_HOLD as it causes problems with key rolls
+// I think tap dance may enable this, or at least mimic the functionality
+#ifdef PERMISSIVE_HOLD
+    #undef PERMISSIVE_HOLD
+#endif
+// Turn on Caps Word when both shift buttons are held
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+
 #include "config_led.h"
