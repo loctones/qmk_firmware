@@ -32,7 +32,8 @@ enum iris_layers {
     LYR_QWERTY = 0,
     LYR_NAV = 1,     // Navigation
     LYR_SYMBOLS = 2, // Symbols
-    LYR_ADJUST = 3   // Keyboard/others
+    LYR_ADJUST = 3,  // Keyboard/others
+    LYR_NUMPAD = 4,  // Nummpad
 };
 
 // Layer Select Underglow configuration
@@ -44,7 +45,8 @@ enum iris_layers {
 #define UNDERGLOW_VAL 220
 #define LYR_NAV_COLOR_HSV 155, 200, UNDERGLOW_VAL // Blue
 #define LYR_SYMBOLS_COLOR_HSV 90, 200, UNDERGLOW_VAL  // Green
-#define LYR_ADJUST_COLOR_HSV 222, 200, UNDERGLOW_VAL  // Pin
+#define LYR_ADJUST_COLOR_HSV 222, 200, UNDERGLOW_VAL  // Purple
+#define LYR_NUMPAD_COLOR_HSV 201, 250, UNDERGLOW_VAL  // Pink
 
 // Layer state change colors
 void layer_select_underglow(uint32_t state);
@@ -82,6 +84,8 @@ enum {
 #define CTL_LAR MT(MOD_RCTL, KC_LEFT) // Mod-tap: RCTL when held, left arrow when tapped
 #define SFT_CAP MT(MOD_LSFT, KC_CAPSLOCK) // Mod-tap: Left shift when held, caps lock when tapped
 #define SFT_ENT MT(MOD_RSFT, KC_ENT) // Mod-tap: Right shift when held, enter when tapped.
+#define BSP_NMP LT(LYR_NUMPAD, KC_BSPC) // Layer Tap: NUMPAD layer when held, backspace when tapped
+#define TGL_NMP TG(LYR_NUMPAD) // Toggle the NUMPAD layer
 
 #ifdef HOME_ROW_MODS
 // Home Row Mod custom keys
@@ -103,7 +107,20 @@ enum {
 #define ALT_9 LALT_T(KC_9)
 #define CTL_8 LCTL_T(KC_8)
 #define SFT_7 LSFT_T(KC_7)
+
+// GASC with my Iris symbols
+// NOTE: Shifted characters don't work with Mod-Tap, so I have these disabled, for now
+// GUI/WIN on left currently unused
+// #define ALT_LPRN LGUI_T(KC_LEFT_PAREN) // ALT and Left Paren
+// #define CTL_RPRN LCTL_T(KC_RIGHT_PAREN) // CTL and Right Paren
+// #define SFT_MINS LSFT_T(KC_MINS) // Shift and Minus
+// GUI on right currently unused in symbol layer
+// #define ALT_RCBR LALT_T(KC_RIGHT_CURLY_BRACE) // ALT and Right Curly bracket
+// #define CTL_LCBR LCTL_T(KC_LEFT_CURLY_BRACE) // CTL and Left Curly bracket
+// Shift on the right currently unused in symbol layer
 #endif // #ifdef HOME_ROW_MODS
+
+// Combos
 
 
 // Secrets

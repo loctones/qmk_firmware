@@ -1,9 +1,9 @@
 #include QMK_KEYBOARD_H
 #include "loctones.h"
 
-// #ifdef CAPS_WORD_ENABLE
-// #include "caps_word.h"
-// #endif // #ifdef CAPS_WORD_ENABLE
+#ifdef CAPS_WORD_ENABLE
+#include "caps_word.h"
+#endif // #ifdef CAPS_WORD_ENABLE
 
 __attribute__ ((weak))
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record) {
@@ -29,11 +29,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_ESC,  GUI_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,                               KC_H,    SFT_J,   CTL_K,   ALT_L,  GUI_SCLN, KC_QUOT,
+     CTL_ESC, GUI_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,                               KC_H,    SFT_J,   CTL_K,   ALT_L,  GUI_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_CCCV,          KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    TGL_NMP, NAV,     BSP_NMP,                   KC_SPACE, SYMBOLS, KC_ENT
+                                    CTL_BS,  NAV,     KC_BSPC,                   KC_SPACE, SYMBOLS, KC_ENT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 //   [LYR_QWERTY] = LAYOUT(
@@ -54,11 +54,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, KC_BTN2, KC_MS_U, KC_BTN1, _______,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
+     KC_ACL0, KC_BTN2, KC_MS_U, KC_BTN1, KC_WBAK, KC_WFWD,                            KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
+     KC_ACL1, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, _______,          KC_MPLY, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, _______,
+     KC_ACL2, _______, _______, _______, _______, _______, _______,          KC_MPLY, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   KC_MPLY, _______, KC_MUTE
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -68,39 +68,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
+     _______, _______, KC_LT,   KC_LCBR, KC_MINS, KC_UNDS,                            KC_PLUS, KC_EQL,  KC_RCBR, KC_GT,   _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, KC_LPRN, KC_RPRN, KC_MINS, KC_UNDS,                            _______, _______, KC_LCBR, KC_RCBR, _______, _______,
+     _______, _______, _______, KC_LPRN, KC_MINS, KC_UNDS,                            KC_PLUS, KC_EQL,  KC_RPRN, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, KC_LT,   KC_GT,   KC_EQL,  KC_PLUS, _______,          _______, _______, _______, KC_LBRC, KC_RBRC, _______, _______,
+     _______, _______, _______, KC_LBRC, _______, _______, _______,          _______, KC_DEL,  KC_INS,  KC_RBRC, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
-// Numbers
-  [LYR_NUMPAD] = LAYOUT(
-  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______,
-  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______,                            KC_ASTR, KC_4,    KC_5,    KC_6,    KC_PLUS, KC_EQL,
-  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______, _______, _______, _______, _______,          _______, KC_SLSH, KC_1,    KC_2,    KC_3,    KC_MINS, _______,
-  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,                   KC_0,    KC_DOT,  _______
-                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
-  ),
-
-
   [LYR_ADJUST] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     _______, KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      RGB_TOG, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     RGB_MOD, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     RGB_MOD, GUI_1,   ALT_2,   CTL_3,   SFT_4,   KC_5,                               KC_6,    SFT_7,   CTL_8,   ALT_9,  GUI_0,    _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      BL_STEP, KC_SEC1, KC_SEC2, KC_SEC3, KC_SEC4, KC_SEC5, _______,          _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -235,35 +219,34 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-// No longer using encoder.
-// bool encoder_update_user(uint8_t index, bool clockwise) {
-//    // Right encoder
-//    if (index == 1) {
-//       switch(biton32(layer_state)){
-//          case LYR_NAV:
-//             if (clockwise) {
-//                tap_code(KC_VOLU);
-//             } else {
-//                tap_code(KC_VOLD);
-//             }
-//             break;
-//          case LYR_QWERTY:
-//          default:
-//             // Triple speed wheel movement
-//             if (clockwise) {
-//                tap_code(KC_WH_U);
-//                tap_code(KC_WH_U);
-//                tap_code(KC_WH_U);
-//             } else {
-//                tap_code(KC_WH_D);
-//                tap_code(KC_WH_D);
-//                tap_code(KC_WH_D);
-//             }
-//             break;
-//       }
-//    }
-//    return true;
-// }
+bool encoder_update_user(uint8_t index, bool clockwise) {
+   // Right encoder
+   if (index == 1) {
+      switch(biton32(layer_state)){
+         case LYR_NAV:
+            if (clockwise) {
+               tap_code(KC_VOLU);
+            } else {
+               tap_code(KC_VOLD);
+            }
+            break;
+         case LYR_QWERTY:
+         default:
+            // Triple speed wheel movement
+            if (clockwise) {
+               tap_code(KC_WH_U);
+               tap_code(KC_WH_U);
+               tap_code(KC_WH_U);
+            } else {
+               tap_code(KC_WH_D);
+               tap_code(KC_WH_D);
+               tap_code(KC_WH_D);
+            }
+            break;
+      }
+   }
+   return true;
+}
 
 // AAB: RGB Layer Lighting
 // Following https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgblight.md#defining-lighting-layers-iddefining-lighting-layers
@@ -279,16 +262,12 @@ const rgblight_segment_t PROGMEM symbols_layer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM adjust_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, LYR_ADJUST_COLOR_HSV}  // Light all LEDs, starting with 0
 );
-const rgblight_segment_t PROGMEM numpad_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, LYR_NUMPAD_COLOR_HSV}  // Light all LEDs, starting with 0
-);
 // Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     base_layer,
     nav_layer,
     symbols_layer,
-    adjust_layer,
-    numpad_layer
+    adjust_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -305,6 +284,5 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(1, layer_state_cmp(state, LYR_NAV));
     rgblight_set_layer_state(2, layer_state_cmp(state, LYR_SYMBOLS));
     rgblight_set_layer_state(3, layer_state_cmp(state, LYR_ADJUST));
-    rgblight_set_layer_state(4, layer_state_cmp(state, LYR_NUMPAD));
     return state;
 }
