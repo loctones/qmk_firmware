@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_ESC,  GUI_A,   ALT_S,   CTL_D,   SFT_F,   KC_G,                               KC_H,    SFT_J,   CTL_K,   ALT_L,  GUI_SCLN, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     LSFT_ENT, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_CCCV,          KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,
+     LSFT_ENT, KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,    KC_CCCV,          KC_MPLY, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_ENT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     QK_AREP, NAV,     BSP_NMP,                  KC_SPACE, SYMBOLS, QK_REP
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -251,25 +251,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool get_combo_must_tap(uint16_t combo_index, combo_t *combo) {
     // Set up for only a couple of combos, right now
     // decide by combo->keycode
-    switch (combo->keycode) {
-        case KC_ESC:
+    switch (combo_index) {
+        case ESC_COMBO:
+        case CAPS_COMBO:
             return true;
     }
     return false;
 }
 #endif
 
+// Use a combo to turn on caps word
+void process_combo_event(uint16_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case CAPS_COMBO:
+      if (pressed) {
+        caps_word_on();
+      }
+      break;
+  }
+}
 
 
 // Tapping term per key settings
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case SFT_ENT: // Shift/enter key
+        case RSFT_ENT: // Shift/enter key
             return TAPPING_TERM - 20;
         case LSFT_ENT: // Shift/enter key
             return TAPPING_TERM - 80;
         case GUI_A: // GUI/Win/A key
-        case GUI_1: // GUI/Win/1 key
             return TAPPING_TERM + 20;
         default:
             return TAPPING_TERM;

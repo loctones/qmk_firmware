@@ -1,14 +1,9 @@
+# Note that <user>/rules.mk is included in the build AFTER the keymap rules.mk.
+# This allows <user>/rules.mk to handle features that may or may not be available in each keyboard.
 
-TAP_DANCE_ENABLE = yes
-CAPS_WORD_ENABLE = yes
-COMBO_ENABLE = yes
-REPEAT_KEY_ENABLE = yes
+# Remember that features should be enabled in the keayboard's rules.mk file
 
-# Include this after the features to that my combos in loctones.c can be used.
 INTROSPECTION_KEYMAP_C += loctones.c
-
-
-# For Caps Word, #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD in config.h for each keymap
 
 ifneq ("$(wildcard $(USER_PATH)/secrets.c)","")
   SRC += secrets.c

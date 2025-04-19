@@ -5,13 +5,7 @@
 From QMK MSYS and within the git repo: qmk compile -kb keebio/iris_ce/rev1 -km loctones
 */
 
-#ifdef TAPPING_TERM
-    #undef TAPPING_TERM
-#endif
 
-#define TAPPING_TERM 140 // 140 for Iris rev. 5. May need to change for others.
-
-#define MACRO_TIMER 5  // Only used for secrets, right now, as far as I can tell
 
 enum iris_layers {
     LYR_QWERTY = 0,
@@ -64,7 +58,7 @@ enum {
 #define CTL_ESC MT(MOD_LCTL, KC_ESC)  // Mod-tap: LCTL when held, Esc when tapped
 #define CTL_LAR MT(MOD_RCTL, KC_LEFT) // Mod-tap: RCTL when held, left arrow when tapped
 #define SFT_CAP MT(MOD_LSFT, KC_CAPSLOCK) // Mod-tap: Left shift when held, caps lock when tapped
-#define SFT_ENT MT(MOD_RSFT, KC_ENT) // Mod-tap: Right shift when held, enter when tapped.
+#define RSFT_ENT MT(MOD_RSFT, KC_ENT) // Mod-tap: Right shift when held, enter when tapped.
 #define LSFT_ENT MT(MOD_LSFT, KC_ENT) // Mod-tap: Left shift when held, enter when tapped.
 #define BSP_NMP LT(LYR_NUMPAD, KC_BSPC) // Layer Tap: NUMPAD layer when held, backspace when tapped
 #define TGL_NMP TG(LYR_NUMPAD) // Toggle the NUMPAD layer
@@ -79,25 +73,15 @@ enum {
 #define ALT_L LALT_T(KC_L)
 #define CTL_K LCTL_T(KC_K)
 #define SFT_J LSFT_T(KC_J)
-// GASC with numbers on the home row
-#define GUI_1 LGUI_T(KC_1)
-#define ALT_2 LALT_T(KC_2)
-#define CTL_3 LCTL_T(KC_3)
-#define SFT_4 LSFT_T(KC_4)
-#define GUI_0 LGUI_T(KC_0)
-#define ALT_9 LALT_T(KC_9)
-#define CTL_8 LCTL_T(KC_8)
-#define SFT_7 LSFT_T(KC_7)
 
-// Combo stuff
-#ifdef COMBO_ENABLE
-#define COMBO_MUST_TAP_PER_COMBO  // Require some combos to be taps only, like 
-#endif  // COMBO_ENABLE
-
-// If using Caps word, enable it by holding both shifts
-#ifdef CAPS_WORD_ENABLE
-#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#endif // CAPS_WORD_ENABLE
+// Combo enums
+enum combo_events {
+  CUT_COMBO,
+  COPY_COMBO,
+  PASTE_COMBO,
+  ESC_COMBO,
+  CAPS_COMBO,
+};
 
 // Secrets
 enum secret_strings {
@@ -115,4 +99,4 @@ enum secret_strings {
 #define KC_SEC4 KC_SECRET_4
 #define KC_SEC5 KC_SECRET_5
 
-#endif
+#endif // Userspace
